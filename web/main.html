@@ -20,6 +20,10 @@
             <!-- The board is going to be here. -->
         </div>
 
+        <div class="row fixed-bottom" id="playerDisplay">
+            <!-- The player names are going to be displayed here -->
+        </div>
+
     </div>
 
     <!-- Just a bit of setup -->
@@ -38,6 +42,14 @@
                     appendHtml = '<button class="btn btn-primary btn-lg btn-block">' + (question * 100) + '</button><br>';
                     categoryView.innerHTML += appendHtml;
                 }
+            }
+        }
+
+        eel.expose(printPlayers)
+        function printPlayers(players){
+            playerBar = document.getElementById("playerDisplay");
+            for(name in players){
+                playerBar.innerHTML += '<div class="col" style="background-color: ' + players[name] + ';">' + name + '</div>';
             }
         }
     </script>
