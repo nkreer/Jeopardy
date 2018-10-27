@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+        
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="bootstrap.css">
+
+</head>
+
+<body>
+    
+    <div class="container">
+
+        <br>
+
+        <div class="row" id="jeopardyTableView">
+            <!-- The board is going to be here. -->
+        </div>
+
+    </div>
+
+    <!-- Just a bit of setup -->
+    <script type="text/javascript">
+        eel.expose(populateBoard)
+        function populateBoard(categoryCount, questionCount){
+            // Creating all columns
+            tableView = document.getElementById("jeopardyTableView");
+            for(i = 1; i <= categoryCount; i++){
+                appendHtml = '<div class="col" id="categoryColumn-' + i + '"><h3>Category ' + i + '</h3></div>';
+                tableView.innerHTML += appendHtml;
+                // Get self
+                categoryView = document.getElementById("categoryColumn-" + i);
+                // Fill column with buttons
+                for(question = 1; question <= questionCount; question++){
+                    appendHtml = '<button class="btn btn-primary btn-lg btn-block">' + (question * 100) + '</button><br>';
+                    categoryView.innerHTML += appendHtml;
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
