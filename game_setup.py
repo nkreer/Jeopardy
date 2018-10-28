@@ -5,7 +5,7 @@ colors = ["#3e4444", "#82b74b", "#405d27", "#544130", "#441c1c", "#361c44"]
 keys = ["a", "l", "u", "n", "+", "-"]
 values = [100, 200, 300, 400, 500, 600]
 
-def create_players(buzzers=False):
+def create_players():
     players = {}
     while True:
         player = input("Player name: ");
@@ -19,18 +19,17 @@ def create_players(buzzers=False):
         if color is "":
             color = default_color
 
+        # Are we playing with buzzer support?
+        default_key = keys[len(players)]
+        key = input("Key (Leave blank for " + default_key + "): ")
+        # Assign the chosen buzzer key
+        if key is "":
+            key = default_key
+
         # Create player and assign given color and points
         players[player] = {}
         players[player]["color"] = color
         players[player]["points"] = 0
-
-        # Are we playing with buzzer support?
-        if buzzers:
-            default_key = keys[len(players)]
-            key = input("Key (Leave blank for " + default_key + "): ")
-            # Assign the chosen buzzer key
-            if key is "":
-                key = default_key
-            players[player]["key"] = key
+        players[player]["key"] = key
 
     return players

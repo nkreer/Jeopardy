@@ -19,4 +19,42 @@ wget https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css -O
 
 ### Playing
 
-To play, you need to supply a json file with the clues. 
+#### Creating cluesets/Preparation
+
+To play, you need to supply a json file containing the clues. You can use ```clues/example.json``` as a starting point. The file defines a list of categories, each category containing a name and a set of clues. If you want, you can also specify the value of the clues for each category independently.
+
+Schema:
+
+```json
+[
+    {
+        "name": "Category name",
+        "clues": [
+            {
+                "clue": "Your clue here",
+                "response": "(optional) The expected response",
+                "double": "set to true if it should be a double jeopardy"
+            }
+        ]
+    }
+]
+```
+
+#### Running
+
+Run ```python3 app.py path/to/clues.json``` in order to start the game with the supplied clues. It'll ask you for the names of the players and allows you to supply a specific color or key for the player if you don't want to use the default. There are default values for up to six players. When you're finished, simply leave the input for a new player name blank and the board will open in a Chromium/Chrome window.
+
+#### Managing the game
+
+Click on a button to play a clue. Players can buzz in using the key specified during setup. You can use the following keys to then manage the game:
+
+```
+q - return to the board, discard
+w - return to the board, mark the clue as played
+r - reset buzzed in player
+v - verify the response of the buzzed in player as correct, give points
+x - incorrect response, take points
+```
+
+**Please don't assign any of your players to these keys right now! It will break everything!**
+The statusbar at the top of the screen will inform you about the current state.
