@@ -25,6 +25,10 @@ def quit_app():
     quit()
 
 @eel.expose
+def show_clue(category_index, clue_index):
+    eel.showClue(clues, category_index, clue_index)
+
+@eel.expose
 def update_board():
     eel.populateBoard(clues, players)
     eel.printPlayers(players)
