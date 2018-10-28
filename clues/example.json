@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Example Category",
+        "values": [100, 300, 500, 800, 1000],
+        "clues": [
+            {
+                "clue": "You're currently playing this.",
+                "response": "Jeopardy"
+            },
+            {
+                "clue": "Their services are used to host this source code.",
+                "response": "GitHub"
+            },
+            {
+                "clue": "This is a clue without a response assigned"
+            },
+            {
+                "clue": "This is clue no. 4 for 400 points and a double jeopardy!",
+                "double": true
+            },
+            {
+                "clue": "Just another example clue",
+                "response": "That's so cool!"
+            }
+        ]
+    },
+    {
+        "name": "2nd Category",
+        "clues": [
+            {
+                "clue": "This will just repeat from the first category.",
+                "response": "Clues"
+            },
+            {
+                "clue": "Their services are used to host this source code.",
+                "response": "GitHub"
+            },
+            {
+                "clue": "This is a clue without a response assigned"
+            },
+            {
+                "clue": "This is clue no. 4 for 400 points and a double jeopardy!",
+                "double": true
+            },
+            {
+                "clue": "Just another example clue",
+                "response": "That's so cool!"
+            }
+        ]
+    }
+]

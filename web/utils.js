@@ -20,17 +20,31 @@ function updateInfoDisplay(information){
 
 // Show the board
 eel.expose(populateBoard)
-function populateBoard(categoryCount, questionCount){
+function populateBoard(clues, players){
     // Creating all columns for the categories
+    buttonStyle = "btn btn-outline-secondary btn-lg w-100 h-50";
     tableView = document.getElementById("jeopardyTableView");
     tableView.innerHTML = "";
-    for(i = 1; i <= categoryCount; i++){
-        appendHtml = '<div class="col" id="categoryColumn-' + i + '"><h3 class="text-center">Category ' + i + '</h3></div>';
+    categoryCount = clues.length;
+    for(i = 0; i < categoryCount; i++){
+        // Print the name of the category at the top
+        appendHtml = '<div class="col" id="categoryColumn-' + i + '"><h3 class="text-center">' + clues[i]["name"] + '</h3></div>';
         tableView.innerHTML += appendHtml;
-        categoryView = document.getElementById("categoryColumn-" + i);
         // Fill column with buttons to call up the questions
-        for(question = 1; question <= questionCount; question++){
-            appendHtml = '<button class="btn btn-outline-secondary btn-lg w-100 h-50">' + (question * 100) + '</button>';
+        questionCount = clues[i]["clues"].length;
+        categoryView = document.getElementById("categoryColumn-" + i);
+        for(question = 0; question < questionCount; question++){
+            // Set the button text to the value of the clue if the clue isn't played yet
+            name = clues[i]["clues"][question]["played"];
+            value = clues[i]["values"][question];
+            // Fucking JS is so broken!!!! dang it
+            if(name == "false"){
+                appendHtml = '<button class="' + buttonStyle + '">' + value + '</button>';
+            // Set the button text and color to the name of the player that won it
+            } else {
+                color = players[name]["color"];
+                appendHtml = '<button class="' + buttonStyle + '" style="background-color: ' + color + '; color: white;">' + name + ' +' + value + '</button>';
+            }
             categoryView.innerHTML += appendHtml;
         }
     }
