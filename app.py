@@ -1,7 +1,7 @@
 import eel
 
 # Defaults
-colors = ["red", "cyan", "lime", "yellow", "magenta"]
+colors = ["#3e4444", "#82b74b", "#405d27", "#544130", "#441c1c", "#361c44"]
 
 # Setting up the game of Jeopardy
 players = {}
@@ -17,30 +17,26 @@ while True:
     if color is "":
         color = colors[len(players)]
 
-    # Create player and assign given color
-    players[player] = color
-
-print(players)
+    # Create player and assign given color and points
+    players[player] = {}
+    players[player]["color"] = color
+    players[player]["points"] = 0
 
 
 # Eel stuff
-
 eel.init("web")
 
 @eel.expose
 def quit_app():
     quit()
 
-web_app_options = {
-    'mode': "chrome-app",
-    'port': 8080,
-    'chromeFlags': ["--start-fullscreen"]
-}
+@eel.expose
+def update_board():
+    eel.populateBoard(6, 5)
+    eel.printPlayers(players)
+    eel.updateInfoDisplay({1: {"color": "black", "text": "Jeopardy!"}})
 
-eel.start("main.html", block=False, options=web_app_options)
-
-eel.populateBoard(6, 5)
-eel.printPlayers(players)
+eel.start("main.html", block=False)
 
 while True:
     eel.sleep(1.0)

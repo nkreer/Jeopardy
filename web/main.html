@@ -5,18 +5,34 @@
 <head>
         
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="utils.js"></script>
     <link rel="stylesheet" href="bootstrap.css">
+
+    <style type="text/css">
+        .infobar {
+            font-size: 1.2em;
+            line-height: normal;
+            color: white;
+        }
+    </style>
+
+    <title>Jeopardy</title>
 
 </head>
 
 <body>
     
-    <div class="container">
+    <div class="containerewfwefw">
 
         <br>
 
-        <div class="row" id="jeopardyTableView">
+        <div class="row fixed-top" id="informationDisplay">
+            <!-- Information about stuff, like the time -->
+        </div><br>
+
+        <div class="row no-gutters" id="jeopardyTableView">
             <!-- The board is going to be here. -->
         </div>
 
@@ -28,30 +44,26 @@
 
     <!-- Just a bit of setup -->
     <script type="text/javascript">
+        console.log("Current")
         eel.expose(populateBoard)
         function populateBoard(categoryCount, questionCount){
             // Creating all columns
             tableView = document.getElementById("jeopardyTableView");
             for(i = 1; i <= categoryCount; i++){
-                appendHtml = '<div class="col" id="categoryColumn-' + i + '"><h3>Category ' + i + '</h3></div>';
+                appendHtml = '<div class="col" id="categoryColumn-' + i + '"><h3 class="text-center">Category ' + i + '</h3></div>';
                 tableView.innerHTML += appendHtml;
                 // Get self
                 categoryView = document.getElementById("categoryColumn-" + i);
                 // Fill column with buttons
                 for(question = 1; question <= questionCount; question++){
-                    appendHtml = '<button class="btn btn-primary btn-lg btn-block">' + (question * 100) + '</button><br>';
+                    appendHtml = '<button class="btn btn-outline-secondary btn-lg w-100 h-50">' + (question * 100) + '</button>';
                     categoryView.innerHTML += appendHtml;
                 }
             }
         }
 
-        eel.expose(printPlayers)
-        function printPlayers(players){
-            playerBar = document.getElementById("playerDisplay");
-            for(name in players){
-                playerBar.innerHTML += '<div class="col" style="background-color: ' + players[name] + ';">' + name + '</div>';
-            }
-        }
+        // Tell python to update the page with the current data
+        eel.update_board()
     </script>
 
 </body>
