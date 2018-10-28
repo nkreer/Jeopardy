@@ -2,3 +2,14 @@
     font-size: 1.2em;
     color: white;
 }
+
+.clue {
+    font-size: 3.5em;
+    text-align: center;
+}
+
+.vertical-center {
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+}
