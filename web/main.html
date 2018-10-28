@@ -9,14 +9,7 @@
     <script type="text/javascript" src="/eel.js"></script>
     <script type="text/javascript" src="utils.js"></script>
     <link rel="stylesheet" href="bootstrap.css">
-
-    <style type="text/css">
-        .infobar {
-            font-size: 1.2em;
-            line-height: normal;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 
     <title>Jeopardy</title>
 
@@ -24,44 +17,20 @@
 
 <body>
     
-    <div class="containerewfwefw">
+    <div class="row fixed-top" id="informationDisplay">
+        <!-- Information about stuff, like the time -->
+    </div><br><br>
 
-        <br>
+    <div class="row no-gutters" id="jeopardyTableView">
+        <!-- The board is going to be here. -->
+    </div>
 
-        <div class="row fixed-top" id="informationDisplay">
-            <!-- Information about stuff, like the time -->
-        </div><br>
-
-        <div class="row no-gutters" id="jeopardyTableView">
-            <!-- The board is going to be here. -->
-        </div>
-
-        <div class="row fixed-bottom" id="playerDisplay">
-            <!-- The player names are going to be displayed here -->
-        </div>
-
+    <div class="row fixed-bottom" id="playerDisplay">
+        <!-- The player names are going to be displayed here -->
     </div>
 
     <!-- Just a bit of setup -->
     <script type="text/javascript">
-        console.log("Current")
-        eel.expose(populateBoard)
-        function populateBoard(categoryCount, questionCount){
-            // Creating all columns
-            tableView = document.getElementById("jeopardyTableView");
-            for(i = 1; i <= categoryCount; i++){
-                appendHtml = '<div class="col" id="categoryColumn-' + i + '"><h3 class="text-center">Category ' + i + '</h3></div>';
-                tableView.innerHTML += appendHtml;
-                // Get self
-                categoryView = document.getElementById("categoryColumn-" + i);
-                // Fill column with buttons
-                for(question = 1; question <= questionCount; question++){
-                    appendHtml = '<button class="btn btn-outline-secondary btn-lg w-100 h-50">' + (question * 100) + '</button>';
-                    categoryView.innerHTML += appendHtml;
-                }
-            }
-        }
-
         // Tell python to update the page with the current data
         eel.update_board()
     </script>
