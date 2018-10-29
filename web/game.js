@@ -1,3 +1,5 @@
+// Functions in this file render everything on the screen
+
 // Display the players with their colors and their points
 eel.expose(printPlayers);
 function printPlayers(players){
@@ -27,6 +29,17 @@ function showClue(clues, category, clue, value){
     clueData = clues[category]["clues"][clue];
     // Show the clue
     tableView.innerHTML = '<div class="container vertical-center text-center clue">' + clueData["clue"] + '</div>';
+    // Show the players what category and value are selected
+    updateInfoDisplay([
+        {
+            "color": "black", 
+            "text": clues[category]["name"]
+        },
+        {
+            "color": "black",
+            "text": value
+        }
+    ]);
     toggleBuzzers(category, clue, value);
 }
 

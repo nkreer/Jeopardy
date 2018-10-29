@@ -1,6 +1,6 @@
 # jeopardy
 
-![Screenshot of the software](screenshot.jpg)
+![Animated screenshot of the software](screenshot.gif)
 
 This is a hacky piece of software to play the Jeopardy! gameshow. It's written in Python and JavaScript using the [Eel library by Chris Knott](https://github.com/ChrisKnott/Eel). Please keep in mind that this project is in no way affiliated with Jeopardy! or its producers.
 

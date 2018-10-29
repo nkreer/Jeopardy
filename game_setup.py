@@ -1,9 +1,14 @@
+import json
 # Setting up the game of Jeopardy
 
-# Default colors, keys and clue values (for 6 players)
-colors = ["#3e4444", "#82b74b", "#405d27", "#544130", "#441c1c", "#361c44"]
-keys = ["a", "l", "u", "n", "+", "-"]
-values = [100, 200, 300, 400, 500, 600]
+# Get the defaults from the config file
+with open("config.json") as configFile:
+    config = json.load(configFile)
+
+colors = config["colors"]
+keys = config["keys"]
+values = config["values"]
+defaulttext = config["default_infotext"]
 
 def create_players():
     players = {}

@@ -47,5 +47,101 @@
                 "response": "That's so cool!"
             }
         ]
+    },
+    {
+        "name": "3rd Category",
+        "clues": [
+            {
+                "clue": "This will just repeat from the first category.",
+                "response": "Clues"
+            },
+            {
+                "clue": "Their services are used to host this source code.",
+                "response": "GitHub"
+            },
+            {
+                "clue": "This is a clue without a response assigned"
+            },
+            {
+                "clue": "This is clue no. 4 for 400 points and a double jeopardy!",
+                "double": true
+            },
+            {
+                "clue": "Just another example clue",
+                "response": "That's so cool!"
+            }
+        ]
+    },
+    {
+        "name": "4th Category",
+        "clues": [
+            {
+                "clue": "This will just repeat from the first category.",
+                "response": "Clues"
+            },
+            {
+                "clue": "Their services are used to host this source code.",
+                "response": "GitHub"
+            },
+            {
+                "clue": "This is a clue without a response assigned"
+            },
+            {
+                "clue": "This is clue no. 4 for 400 points and a double jeopardy!",
+                "double": true
+            },
+            {
+                "clue": "Just another example clue",
+                "response": "That's so cool!"
+            }
+        ]
+    },
+    {
+        "name": "5th Category",
+        "clues": [
+            {
+                "clue": "This will just repeat from the first category.",
+                "response": "Clues"
+            },
+            {
+                "clue": "Their services are used to host this source code.",
+                "response": "GitHub"
+            },
+            {
+                "clue": "This is a clue without a response assigned"
+            },
+            {
+                "clue": "This is clue no. 4 for 400 points and a double jeopardy!",
+                "double": true
+            },
+            {
+                "clue": "Just another example clue",
+                "response": "That's so cool!"
+            }
+        ]
+    },
+    {
+        "name": "6th Category",
+        "clues": [
+            {
+                "clue": "This will just repeat from the first category.",
+                "response": "Clues"
+            },
+            {
+                "clue": "Their services are used to host this source code.",
+                "response": "GitHub"
+            },
+            {
+                "clue": "This is a clue without a response assigned"
+            },
+            {
+                "clue": "This is clue no. 4 for 400 points and a double jeopardy!",
+                "double": true
+            },
+            {
+                "clue": "Just another example clue",
+                "response": "That's so cool!"
+            }
+        ]
     }
 ]

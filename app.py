@@ -33,7 +33,7 @@ def show_clue(category_index, clue_index, value):
 def update_board():
     eel.populateBoard(clues, players)
     eel.printPlayers(players)
-    eel.updateInfoDisplay({1: {"color": "black", "text": "Jeopardy!"}})
+    eel.updateInfoDisplay({1: {"color": "black", "text": game_setup.defaulttext}})
 
 @eel.expose
 def points_to_player(name, points):
