@@ -23,5 +23,14 @@
         500, 
         600
     ],
-    "default_infotext": "Jeopardy!"
+    "default_infobar": [
+        {
+            "color": "black",
+            "text": "Jeopardy!"
+        },
+        {
+            "color": "black",
+            "text": "github.com/nkreer/jeopardy"
+        }
+    ]
 }

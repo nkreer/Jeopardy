@@ -49,7 +49,7 @@ def show_clue(category_index, clue_index, value, double=False):
 def update_board():
     eel.populateBoard(clues, players)
     eel.printPlayers(players)
-    eel.updateInfoDisplay({1: {"color": "black", "text": game_setup.defaulttext}})
+    eel.updateInfoDisplay(game_setup.defaultbar)
 
 
 # Add points to the player

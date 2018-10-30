@@ -8,7 +8,7 @@ with open("config.json") as configFile:
 colors = config["colors"]
 keys = config["keys"]
 values = config["values"]
-defaulttext = config["default_infotext"]
+defaultbar = config["default_infobar"]
 
 def create_players():
     players = {}
