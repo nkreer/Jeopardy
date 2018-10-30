@@ -7,7 +7,7 @@ buzzedInValue = 0;
 
 // Special styling
 function updateBuzzerInfoDisplay(players){
-    updateInfoDisplay({1: {"color": players[buzzedInPlayer]["color"], "size": 3.5, "text": playerKeys[playerKey]}});
+    updateInfoDisplay({1: {"color": players[buzzedInPlayer]["color"], "size": 3.5, "text": buzzedInPlayer}});
 }
 
 // Setting up the buzzers and other shortcuts
@@ -47,6 +47,7 @@ function setupKeys(players){
             // Verify the players answer as correct
             if(key == "v"){
                 if(buzzedInPlayer != ""){
+                    console.log("Giving " + buzzedInValue);
                     eel.solved_clue(buzzedInPlayer, buzzedInCategory, buzzedInClue);
                     eel.points_to_player(buzzedInPlayer, buzzedInValue);
                     toggleBuzzers(-1, -1, 0);

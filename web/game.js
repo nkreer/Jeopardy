@@ -29,35 +29,53 @@ function doubleJeopardy(clues, category, clue, value, player, players){
     doubleView = document.getElementById("doubleView");
     doubleView.innerHTML = '<br><br><br><h2 class="">DOUBLE JEOPARDY</h2>';
     // Who is it?
-    console.log(player)
     doubleView.innerHTML += '<p class="clue" style="color: ' + players[player]["color"] + '">' + player + '</p>';
+    // Suggest min and max values
     doubleView.innerHTML += '<p class="clue">' + (value / 2) + " - " + (value * 2) + '</p>';
     doubleView.innerHTML += '<br><br>';
+    // Input for new value
     doubleView.innerHTML += '<input type="text" id="valueSelector" class="text-center form-control" value="' + value + '" />';
-    doubleView.innerHTML += '<br><br><button onclick="" class="btn btn-lg btn-primary">PLAY</button>';
+    // Continue with the clue
+    doubleView.innerHTML += '<br><br><button onclick="eel.show_clue(' + category + ', ' + clue + ', ' + value + ', true);" class="btn btn-lg btn-primary">PLAY</button>';
 }
 
 // Show the clue
 eel.expose(showClue);
-function showClue(clues, category, clue, value, player=""){
+function showClue(clues, category, clue, value, player="", players={}){
     // Get the board clean
     gameView = document.getElementById("gameView");
     // Grab the clue and its associated information
     clueData = clues[category]["clues"][clue];
+
+    // Check whether this is a double and there has been a value selection
+    valueSelector = document.getElementById("valueSelector")
+    if(valueSelector != null && player != "" && players != {}){
+        // Update the value
+        value = valueSelector.value;
+        console.log(value)
+        console.log(valueSelector)
+
+        // buzz player in
+        toggleBuzzers(category, clue, value, player);
+        updateBuzzerInfoDisplay(players);
+    } else {
+        // Show the players what category and value are selected
+        updateInfoDisplay([
+            {
+                "color": "black", 
+                "text": clues[category]["name"]
+            },
+            {
+                "color": "black",
+                "text": value
+            }
+        ]);
+
+        toggleBuzzers(category, clue, value);
+    }
+
     // Show the clue
     gameView.innerHTML = '<div class="container vertical-center text-center clue">' + clueData["clue"] + '</div>';
-    // Show the players what category and value are selected
-    updateInfoDisplay([
-        {
-            "color": "black", 
-            "text": clues[category]["name"]
-        },
-        {
-            "color": "black",
-            "text": value
-        }
-    ]);
-    toggleBuzzers(category, clue, value, player);
 }
 
 // Show the board

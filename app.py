@@ -34,13 +34,14 @@ def quit_app():
 
 
 @eel.expose
-def show_clue(category_index, clue_index, value):
-    # Check if we have a double jeopardy
-    if clues[category_index]["clues"][clue_index]["double"]:
-        print(last_points)
+def show_clue(category_index, clue_index, value, double=False):
+    # Check if we have a double jeopardy (and not selected a new value yet)
+    if clues[category_index]["clues"][clue_index]["double"] and double is False:
         eel.doubleJeopardy(clues, category_index, clue_index, value, last_points, players)
+    elif double is True:
+        eel.showClue(clues, category_index, clue_index, value, last_points, players)
     else:
-        eel.showClue(clues, category_index, clue_index, value)
+        eel.showClue(clues, category_index, clue_index, value, "", players)
 
 
 # Call the necessary js-functions to re-draw the board
@@ -58,10 +59,10 @@ def points_to_player(name, points):
     global last_points
     print(points, "for", name)
     # If points are positive, save last_points
-    if points >= 0:
+    if float(points) >= 0:
         last_points = name
 
-    players[name]["points"] += points
+    players[name]["points"] += float(points)
 
 
 @eel.expose
