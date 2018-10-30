@@ -5,6 +5,11 @@ buzzedInCategory = -1;
 buzzedInClue = -1;
 buzzedInValue = 0;
 
+// Special styling
+function updateBuzzerInfoDisplay(players){
+    updateInfoDisplay({1: {"color": players[buzzedInPlayer]["color"], "size": 3.5, "text": playerKeys[playerKey]}});
+}
+
 // Setting up the buzzers and other shortcuts
 eel.expose(setupKeys);
 function setupKeys(players){
@@ -16,9 +21,9 @@ function setupKeys(players){
 
     // Key handler
     document.addEventListener('keydown', (event) => {
+        const key = event.key;
         // Basically ask whether we're currently showing a clue
         if(buzzers){
-            const key = event.key;
             // Return to the board if q, discard clue
             if(key == "q"){
                 toggleBuzzers(-1, -1, 0);
@@ -66,8 +71,29 @@ function setupKeys(players){
                 // Verify no one else has buzzed in
                 if(key == playerKey && buzzedInPlayer == ""){
                     buzzedInPlayer = playerKeys[playerKey];
-                    updateInfoDisplay({1: {"color": "blue", "size": 3, "text": playerKeys[playerKey]}});
+                    updateBuzzerInfoDisplay(players)                    
                 }
+            }
+        } else {
+            // What to do when we're showing the board
+
+            // Export the game to files
+            if(key == "w"){
+                console.log("Exporting the game");
+                eel.export_game();
+                // Let host know via infobar
+                updateInfoDisplay([{"color": "black", "text": "Dumped game data."}]);
+            }
+
+            // Randomly selecting a player
+            if(key == "x"){
+                eel.random_player(true);
+            }
+
+            // Re-draw the board
+            if(key == "r"){
+                console.log("Re-loaded the board");
+                eel.update_board();
             }
         }
     });
@@ -75,10 +101,10 @@ function setupKeys(players){
 
 eel.expose(toggleBuzzers)
 // Enable or disable the buzzing functionality
-function toggleBuzzers(buzzerCategory, buzzerClue, buzzerValue){
+function toggleBuzzers(buzzerCategory, buzzerClue, buzzerValue, buzzerPlayer=""){
     buzzedInCategory = buzzerCategory;
     buzzedInClue = buzzerClue;
-    buzzedInPlayer = "";
+    buzzedInPlayer = buzzerPlayer;
     buzzedInValue = buzzerValue;
     if(buzzers){
         buzzers = false;

@@ -48,6 +48,16 @@ Run ```python3 app.py path/to/clues.json``` in order to start the game with the 
 
 Click on a button to play a clue. Players can buzz in using the key specified during setup. You can use the following keys to then manage the game:
 
+While the board is displayed:
+
+```
+w - export the game data so it can be loaded later
+r - re-load the board
+x - randomly select a player (result is shown in the infobar)
+```
+
+While showing a clue:
+
 ```
 q - return to the board, discard
 w - return to the board, mark the clue as played

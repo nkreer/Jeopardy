@@ -20,15 +20,32 @@ function updateInfoDisplay(information){
     }
 }
 
+// Show the double jeopardy
+eel.expose(doubleJeopardy);
+function doubleJeopardy(clues, category, clue, value, player, players){
+    gameView = document.getElementById("gameView");
+    // Draw the double jeopardy points selection
+    gameView.innerHTML = '<div class="container text-center" id="doubleView">';
+    doubleView = document.getElementById("doubleView");
+    doubleView.innerHTML = '<br><br><br><h2 class="">DOUBLE JEOPARDY</h2>';
+    // Who is it?
+    console.log(player)
+    doubleView.innerHTML += '<p class="clue" style="color: ' + players[player]["color"] + '">' + player + '</p>';
+    doubleView.innerHTML += '<p class="clue">' + (value / 2) + " - " + (value * 2) + '</p>';
+    doubleView.innerHTML += '<br><br>';
+    doubleView.innerHTML += '<input type="text" id="valueSelector" class="text-center form-control" value="' + value + '" />';
+    doubleView.innerHTML += '<br><br><button onclick="" class="btn btn-lg btn-primary">PLAY</button>';
+}
+
 // Show the clue
 eel.expose(showClue);
-function showClue(clues, category, clue, value){
+function showClue(clues, category, clue, value, player=""){
     // Get the board clean
-    tableView = document.getElementById("gameView");
+    gameView = document.getElementById("gameView");
     // Grab the clue and its associated information
     clueData = clues[category]["clues"][clue];
     // Show the clue
-    tableView.innerHTML = '<div class="container vertical-center text-center clue">' + clueData["clue"] + '</div>';
+    gameView.innerHTML = '<div class="container vertical-center text-center clue">' + clueData["clue"] + '</div>';
     // Show the players what category and value are selected
     updateInfoDisplay([
         {
@@ -40,7 +57,7 @@ function showClue(clues, category, clue, value){
             "text": value
         }
     ]);
-    toggleBuzzers(category, clue, value);
+    toggleBuzzers(category, clue, value, player);
 }
 
 // Show the board
