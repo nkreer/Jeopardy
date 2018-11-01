@@ -40,18 +40,19 @@ def quit_app():
 def show_clue(category_index, clue_index, value, double=False):
     # Check if we have a double jeopardy (and not selected a new value yet)
     if clues[category_index]["clues"][clue_index]["double"] and double is False:
-        eel.doubleJeopardy(clues, category_index, clue_index, value, last_points, players)
+        eel.doubleJeopardy(category_index, clue_index, value, last_points)
     elif double is True:
-        eel.showClue(clues, category_index, clue_index, value, last_points, players)
+        eel.showClue(category_index, clue_index, value, last_points)
     else:
-        eel.showClue(clues, category_index, clue_index, value, "", players)
+        eel.showClue(category_index, clue_index, value, "")
 
 
 # Call the necessary js-functions to re-draw the board
 @eel.expose
 def update_board():
-    eel.populateBoard(clues, players)
-    eel.printPlayers(players)
+    eel.updateData(players, clues)
+    eel.populateBoard()
+    eel.printPlayers()
     update_info_display(game_setup.defaultbar)
 
 
@@ -109,9 +110,9 @@ random_player(False)
 
 eel.start("main.html", block=False)
 
-# Start up the host screen if it's configured to have one
+# Start up the viewer screen if it's configured to have a host display
 if game_setup.host_screen:
-    eel.start("main.html", block=False)
+    eel.start("viewer.html", block=False)
 
 eel.setupKeys(players)
 

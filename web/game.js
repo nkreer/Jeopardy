@@ -1,8 +1,16 @@
 // Functions in this file render everything on the screen
+var players = {}
+var clues = {}
+
+eel.expose(updateData);
+function updateData(playerList, clueList){
+    players = playerList;
+    clues = clueList;
+}
 
 // Display the players with their colors and their points
 eel.expose(printPlayers);
-function printPlayers(players){
+function printPlayers(){
     playerBar = document.getElementById("playerDisplay");
     playerBar.innerHTML = ""; // Get rid of anything already in there
     for(name in players){
@@ -22,7 +30,7 @@ function updateInfoDisplay(information){
 
 // Show the double jeopardy
 eel.expose(doubleJeopardy);
-function doubleJeopardy(clues, category, clue, value, player, players){
+function doubleJeopardy(category, clue, value, player){
     gameView = document.getElementById("gameView");
     // Draw the double jeopardy points selection
     gameView.innerHTML = '<div class="container text-center" id="doubleView">';
@@ -41,7 +49,7 @@ function doubleJeopardy(clues, category, clue, value, player, players){
 
 // Show the clue
 eel.expose(showClue);
-function showClue(clues, category, clue, value, player="", players={}){
+function showClue(category, clue, value, player=""){
     // Get the board clean
     gameView = document.getElementById("gameView");
     // Grab the clue and its associated information
@@ -82,7 +90,7 @@ function showClue(clues, category, clue, value, player="", players={}){
 
 // Show the board
 eel.expose(populateBoard);
-function populateBoard(clues, players){
+function populateBoard(){
     // Creating all columns for the categories
     buttonStyle = "btn btn-outline-secondary btn-lg w-100 h-50";
     gameView = document.getElementById("gameView");
