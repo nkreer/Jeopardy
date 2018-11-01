@@ -4,6 +4,7 @@ buzzedInPlayer = "";
 buzzedInCategory = -1;
 buzzedInClue = -1;
 buzzedInValue = 0;
+expectedResponse = "None";
 
 // Special styling
 eel.expose(updateBuzzerInfoDisplay)
@@ -43,6 +44,11 @@ function setupKeys(players){
                 eel.update_info_display({1: {"color": "black", "text": "Buzzers reset"}, 
                     2: {"color": "blue", "text": "Previously " + buzzedInPlayer}});
                 buzzedInPlayer = "";
+            }
+
+            // Show the expected response on this screen only
+            if(key == "c"){
+                updateInfoDisplay([{"color": "blue", "text": expectedResponse}]);
             }
 
             // Verify the players answer as correct
@@ -104,11 +110,12 @@ function setupKeys(players){
 
 eel.expose(toggleBuzzers)
 // Enable or disable the buzzing functionality
-function toggleBuzzers(buzzerCategory, buzzerClue, buzzerValue, buzzerPlayer=""){
+function toggleBuzzers(buzzerCategory, buzzerClue, buzzerValue, buzzerPlayer="", response="None"){
     buzzedInCategory = buzzerCategory;
     buzzedInClue = buzzerClue;
     buzzedInPlayer = buzzerPlayer;
     buzzedInValue = buzzerValue;
+    expectedResponse = response;
     if(buzzers){
         buzzers = false;
     } else {

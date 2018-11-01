@@ -47,6 +47,8 @@ function showClue(clues, category, clue, value, player="", players={}){
     // Grab the clue and its associated information
     clueData = clues[category]["clues"][clue];
 
+    expectedResponse = clueData["response"];
+
     // Check whether this is a double and there has been a value selection
     valueSelector = document.getElementById("valueSelector")
     if(valueSelector != null && player != "" && players != {}){
@@ -56,7 +58,7 @@ function showClue(clues, category, clue, value, player="", players={}){
         console.log(valueSelector)
 
         // buzz player in
-        toggleBuzzers(category, clue, value, player);
+        toggleBuzzers(category, clue, value, player, expectedResponse);
         eel.buzz_player();
     } else {
         // Show the players what category and value are selected
@@ -71,7 +73,7 @@ function showClue(clues, category, clue, value, player="", players={}){
             }
         ]);
 
-        toggleBuzzers(category, clue, value);
+        toggleBuzzers(category, clue, value, "", expectedResponse);
     }
 
     // Show the clue
