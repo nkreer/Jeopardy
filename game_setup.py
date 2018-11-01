@@ -9,6 +9,7 @@ colors = config["colors"]
 keys = config["keys"]
 values = config["values"]
 defaultbar = config["default_infobar"]
+host_screen = config["host_screen"]
 
 def create_players():
     players = {}

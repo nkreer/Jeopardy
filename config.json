@@ -32,5 +32,6 @@
             "color": "black",
             "text": "github.com/nkreer/jeopardy"
         }
-    ]
+    ],
+    "host_screen": false
 }

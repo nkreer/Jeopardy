@@ -1,4 +1,4 @@
-import eel, json, sys, time, random
+import eel, json, sys, random, time
 import game_setup
 
 # Do the game setup
@@ -24,9 +24,12 @@ for category in clues:
         if not "double" in clue:
             clue["double"] = False
 
+        if not "response" in clue:
+            clue["response"] = "None"
+
+
 # Manage the game, be a bridge, etc.
 eel.init("web")
-
 
 @eel.expose
 def quit_app():
@@ -49,7 +52,7 @@ def show_clue(category_index, clue_index, value, double=False):
 def update_board():
     eel.populateBoard(clues, players)
     eel.printPlayers(players)
-    eel.updateInfoDisplay(game_setup.defaultbar)
+    update_info_display(game_setup.defaultbar)
 
 
 # Add points to the player
@@ -80,6 +83,7 @@ def export_game():
         json.dump(players, playerDump)
 
 
+# Choose a random player
 @eel.expose()
 def random_player(updateInfoDisplay):
     global last_points
@@ -88,10 +92,26 @@ def random_player(updateInfoDisplay):
         eel.updateInfoDisplay([{"color": players[last_points]["color"], "text": last_points}])
 
 
+# Update the buzzer display across all windows
+@eel.expose()
+def buzz_player():
+    eel.updateBuzzerInfoDisplay(players)
+
+
+# Update the infodisplay 
+@eel.expose()
+def update_info_display(info):
+    eel.updateInfoDisplay(info)
+
+
 # Before we start, randomly assign a player to last_points    
 random_player(False)
 
 eel.start("main.html", block=False)
+
+# Start up the host screen if it's configured to have one
+if game_setup.host_screen:
+    eel.start("main.html", block=False)
 
 eel.setupKeys(players)
 

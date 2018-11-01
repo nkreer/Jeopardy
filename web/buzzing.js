@@ -6,8 +6,9 @@ buzzedInClue = -1;
 buzzedInValue = 0;
 
 // Special styling
+eel.expose(updateBuzzerInfoDisplay)
 function updateBuzzerInfoDisplay(players){
-    updateInfoDisplay({1: {"color": players[buzzedInPlayer]["color"], "size": 3.5, "text": buzzedInPlayer}});
+    eel.update_info_display([{"color": players[buzzedInPlayer]["color"], "size": 3.5, "text": buzzedInPlayer}]);
 }
 
 // Setting up the buzzers and other shortcuts
@@ -39,7 +40,7 @@ function setupKeys(players){
 
             // Reset the logged in player without giving or taking points
             if(key == "r"){
-                updateInfoDisplay({1: {"color": "black", "text": "Buzzers reset"}, 
+                eel.update_info_display({1: {"color": "black", "text": "Buzzers reset"}, 
                     2: {"color": "blue", "text": "Previously " + buzzedInPlayer}});
                 buzzedInPlayer = "";
             }
@@ -47,10 +48,10 @@ function setupKeys(players){
             // Verify the players answer as correct
             if(key == "v"){
                 if(buzzedInPlayer != ""){
-                    console.log("Giving " + buzzedInValue);
                     eel.solved_clue(buzzedInPlayer, buzzedInCategory, buzzedInClue);
                     eel.points_to_player(buzzedInPlayer, buzzedInValue);
                     toggleBuzzers(-1, -1, 0);
+                    // Return to the board
                     eel.update_board();
                 }
             }
@@ -60,8 +61,8 @@ function setupKeys(players){
                 if(buzzedInPlayer != ""){
                     // Give negative points
                     eel.points_to_player(buzzedInPlayer, buzzedInValue * -1);
-                    updateInfoDisplay({1: {"color": "red", "text": "Incorrect answer"}, 
-                        2: {"color": "black", "text": "by " + buzzedInPlayer}});
+                    eel.update_info_display([{"color": "red", "text": "Incorrect answer"}, 
+                        {"color": "black", "text": "by " + buzzedInPlayer}]);
                     // Other players can buzz in again
                     buzzedInPlayer = "";
                 }
@@ -72,7 +73,8 @@ function setupKeys(players){
                 // Verify no one else has buzzed in
                 if(key == playerKey && buzzedInPlayer == ""){
                     buzzedInPlayer = playerKeys[playerKey];
-                    updateBuzzerInfoDisplay(players)                    
+                    eel.buzz_player();
+                    console.log("Buzzing in");                 
                 }
             }
         } else {
@@ -83,7 +85,7 @@ function setupKeys(players){
                 console.log("Exporting the game");
                 eel.export_game();
                 // Let host know via infobar
-                updateInfoDisplay([{"color": "black", "text": "Dumped game data."}]);
+                eel.update_info_display([{"color": "black", "text": "Dumped game data."}]);
             }
 
             // Randomly selecting a player

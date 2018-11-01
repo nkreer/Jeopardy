@@ -57,10 +57,10 @@ function showClue(clues, category, clue, value, player="", players={}){
 
         // buzz player in
         toggleBuzzers(category, clue, value, player);
-        updateBuzzerInfoDisplay(players);
+        eel.buzz_player();
     } else {
         // Show the players what category and value are selected
-        updateInfoDisplay([
+        eel.update_info_display([
             {
                 "color": "black", 
                 "text": clues[category]["name"]

@@ -67,4 +67,7 @@ x - incorrect response, take points
 ```
 
 **Please don't assign any of your players to these keys right now! It will break everything!**
-The statusbar at the top of the screen will inform you about the current state.
+
+The statusbar at the top of the screen will inform you about the current state of the game.
+
+Thanks to some Eel magic, you have the option to enable a host screen. This special host screen will let you view the expected response provided with the clues. To activate this feature, set ```host_screen``` in ```config.json``` to true.
