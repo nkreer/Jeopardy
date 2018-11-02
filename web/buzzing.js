@@ -14,7 +14,7 @@ function updateBuzzerInfoDisplay(players){
 
 // Setting up the buzzers and other shortcuts
 eel.expose(setupKeys);
-function setupKeys(players){
+function setupKeys(players, controls){
     // Assign the players to keys
     for(player in players){
         key = players[player]["key"];
@@ -26,33 +26,33 @@ function setupKeys(players){
         const key = event.key;
         // Basically ask whether we're currently showing a clue
         if(buzzers){
-            // Return to the board if q, discard clue
-            if(key == "q"){
+            // Return to the board
+            if(key == controls["discard"]){
                 toggleBuzzers(-1, -1, 0);
                 eel.update_board();
             }
 
-            // Return to the board if w, mark clue played
-            if(key == "w"){
+            // Return to the board, mark clue played
+            if(key == controls["played"]){
                 eel.solved_clue("none", buzzedInCategory, buzzedInClue);
                 toggleBuzzers(-1, -1, 0);
                 eel.update_board();
             }
 
             // Reset the logged in player without giving or taking points
-            if(key == "r"){
+            if(key == controls["reset"]){
                 eel.update_info_display({1: {"color": "black", "text": "Buzzers reset"}, 
                     2: {"color": "blue", "text": "Previously " + buzzedInPlayer}});
                 buzzedInPlayer = "";
             }
 
             // Show the expected response on this screen only
-            if(key == "c"){
+            if(key == controls["reveal"]){
                 updateInfoDisplay([{"color": "blue", "text": expectedResponse}]);
             }
 
             // Verify the players answer as correct
-            if(key == "v"){
+            if(key == controls["correct"]){
                 if(buzzedInPlayer != ""){
                     eel.solved_clue(buzzedInPlayer, buzzedInCategory, buzzedInClue);
                     eel.points_to_player(buzzedInPlayer, buzzedInValue);
@@ -63,7 +63,7 @@ function setupKeys(players){
             }
 
             // Incorrect answer
-            if(key == "x"){
+            if(key == controls["wrong"]){
                 if(buzzedInPlayer != ""){
                     // Give negative points
                     eel.points_to_player(buzzedInPlayer, buzzedInValue * -1);
@@ -87,7 +87,7 @@ function setupKeys(players){
             // What to do when we're showing the board
 
             // Export the game to files
-            if(key == "w"){
+            if(key == controls["export"]){
                 console.log("Exporting the game");
                 eel.export_game();
                 // Let host know via infobar
@@ -95,12 +95,12 @@ function setupKeys(players){
             }
 
             // Randomly selecting a player
-            if(key == "x"){
+            if(key == controls["random"]){
                 eel.random_player(true);
             }
 
             // Re-draw the board
-            if(key == "r"){
+            if(key == controls["reload"]){
                 console.log("Re-loaded the board");
                 eel.update_board();
             }

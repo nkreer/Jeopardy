@@ -1,4 +1,26 @@
 {
+    "host_screen": false,
+    "default_infobar": [
+        {
+            "color": "black",
+            "text": "Jeopardy!"
+        },
+        {
+            "color": "black",
+            "text": "github.com/nkreer/jeopardy"
+        }
+    ],
+    "control_keys": {
+        "reset": "r",
+        "reload": "r",
+        "export": "w",
+        "random": "x",
+        "discard": "q",
+        "played": "w",
+        "correct": "v",
+        "wrong": "x",
+        "reveal": "c"
+    },
     "colors": [
         "#3e4444", 
         "#82b74b", 
@@ -22,16 +44,5 @@
         400, 
         500, 
         600
-    ],
-    "default_infobar": [
-        {
-            "color": "black",
-            "text": "Jeopardy!"
-        },
-        {
-            "color": "black",
-            "text": "github.com/nkreer/jeopardy"
-        }
-    ],
-    "host_screen": false
+    ]
 }

@@ -110,11 +110,11 @@ random_player(False)
 
 eel.start("main.html", block=False)
 
-# Start up the viewer screen if it's configured to have a host display
+# Start up the viewer screen if configured to have a host display
 if game_setup.host_screen:
     eel.start("viewer.html", block=False)
 
-eel.setupKeys(players)
+eel.setupKeys(players, game_setup.control_keys)
 
 while True:
     eel.sleep(1.0)
