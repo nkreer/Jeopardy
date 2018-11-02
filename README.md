@@ -2,7 +2,7 @@
 
 ![Animated screenshot of the software](screenshot.gif)
 
-This is a hacky piece of software to play the Jeopardy! gameshow. It's written in Python and JavaScript using the [Eel library by Chris Knott](https://github.com/ChrisKnott/Eel). Please keep in mind that this project is in no way affiliated with Jeopardy! or its producers. All code of this project is released under the [MIT License](LICENSE).
+This is a hacky piece of software to play a Jeopardy-like gameshow. It's written in Python and JavaScript using the [Eel library by Chris Knott](https://github.com/ChrisKnott/Eel). Please keep in mind that this project is in no way affiliated with Jeopardy! or its producers. All code of this project is released under the [MIT License](LICENSE).
 
 ## Usage
 
@@ -21,7 +21,7 @@ wget https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css -O
 
 #### Creating cluesets/Preparation
 
-To play, you need to supply a json file containing the clues. You can use ```clues/example.json``` as a starting point. The file defines a list of categories, each category containing a name and a set of clues. If you want, you can also specify the value of the clues for each category independently.
+To play, you need to supply a json file containing the clues. You can either use ```clues/example.json``` as a starting point for your own clues or download random ones from [jservice.io](http://jservice.io) using the ```getclues.py``` script. The file defines a list of categories, each category containing a name and a set of clues. If you want, you can also specify the value of the clues for each category independently.
 
 Schema:
 
