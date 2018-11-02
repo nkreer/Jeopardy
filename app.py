@@ -2,7 +2,14 @@ import eel, json, sys, random, time
 import game_setup
 
 # Do the game setup
-players = game_setup.create_players()
+if len(sys.argv) > 2:
+    # Player dump is supplied, we needn't ask for new data
+    print("Loading player data from file, skipping setup")
+    with open(sys.argv[2]) as playerDump:
+        players = json.load(playerDump)
+else:
+    players = game_setup.create_players()
+
 last_points = ""
 
 # Load the clues from json

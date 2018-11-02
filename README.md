@@ -44,6 +44,10 @@ Schema:
 
 Run ```python3 app.py path/to/clues.json``` in order to start the game with the supplied clues. It'll ask you for the names of the players and allows you to supply a specific color or key for the player if you don't want to use the default. There are default values for up to six players. When you're finished, simply leave the input for a new player name blank and the board will open in a Chromium/Chrome window.
 
+If you'd like to play using a clue and/or player dump from a previous game, you can simply use the dump as the clue source and append the location of the player dump.
+
+```python3 app.py path/to/cluedump.json path/to/playerdump/.json```
+
 #### Managing the game
 
 Click on a button to play a clue. Players can buzz in using the key specified during setup. You can use the following keys to then manage the game:
